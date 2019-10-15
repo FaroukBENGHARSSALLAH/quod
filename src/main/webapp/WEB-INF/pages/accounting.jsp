@@ -40,17 +40,27 @@
 				           <div class="text-center"><h4 style="margin-top: 33%; font-style: italic;font-weight: 300;">quod</h4></div>
 				           <div id="custom-search-input" class="">
 				                          <form  action="<c:url value="/querystatement" />"  method="get" >
-												 <div class="typeahead__container">
-													        <div class="typeahead__field">
-														            <span class="typeahead__query">
-														                <input class="js-typeahead-country_v1" name="company" placeholder="symbol" autocomplete="off" type="search"   />
-														            </span>
-														            <span class="typeahead__button">
-														                <button type="submit" style="background-color: mintcream;">
-														                    <i class="typeahead__search-icon"></i>
-														                </button>
-														            </span>
-												            </div>
+				                                 <div class="row">
+				                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+				                                         <select name="countries" id="countries" style="width: 200px;">
+				                                             <option value="Argentine" >Argentine</option>
+				                                         </select>
+				                                     </div>
+				                                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ></div>
+				                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+															 <div class="typeahead__container">
+																        <div class="typeahead__field">
+																	            <span class="typeahead__query">
+																	                <input class="js-typeahead-country_v1" name="company" placeholder="symbol" autocomplete="off" type="search"   />
+																	            </span>
+																	            <span class="typeahead__button">
+																	                <button type="submit" style="background-color: mintcream;">
+																	                    <i class="typeahead__search-icon"></i>
+																	                </button>
+																	            </span>
+															            </div>
+															    </div>
+												         </div>
 												    </div>
 						                            <div class="input-group input-group col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-7 col-xs-offset-2" style="padding-top:5%" >
 						                                  <label class="radio-inline"><input type="radio" name="type"  value="income"  checked="true" />income</label>
