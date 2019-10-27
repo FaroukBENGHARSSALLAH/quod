@@ -10,6 +10,7 @@
 		<link href="<c:url value="/resources/css/style.css"  />" rel="stylesheet"  type="text/css"/>
 		<link href="<c:url value="/resources/css/typeahead.css"  />" rel="stylesheet"  type="text/css"/>
 		<link href="<c:url value="/resources/css/gritter.css" />" rel="stylesheet"  type="text/css"/>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link rel="icon"  type="image/x-icon"  href="<c:url value="/resources/images/favicon.png" />"  />
 	    <title>quod</title>
 	    <style type="text/css">
@@ -36,22 +37,59 @@
 	
 		<div class="container-fluid">
 		     <div class="row">    
-				       <div class="col-sm-8 col-md-6 col-xs-10 col-md-offset-3 col-sm-offset-2 col-xs-offset-1" > 
-				           <div class="text-center"><h4 style="margin-top: 33%; font-style: italic;font-weight: 300;">quod</h4></div>
+				       <div class="col-sm-8 col-md-8 col-xs-10 col-md-offset-2 col-sm-offset-2 col-xs-offset-1" > 
+				           <div class="text-center"><h4 style="margin-top: 20%; font-style: italic;font-weight: 300;">quod</h4></div>
 				           <div id="custom-search-input" class="">
 				                          <form  action="<c:url value="/querystatement" />"  method="get" >
 				                                 <div class="row">
+				                                   
 				                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
-				                                         <select name="countries" id="countries" style="width: 200px;">
-				                                             <option value="Argentine" >Argentine</option>
+				                                          <label   style="margin-left: 15px;" >Country</label>
+				                                          <div class="col-md-2"  style="margin-left: 3px;margin-right: -44px;top: 26px;"  >
+				                                              <select id="countries" style="width: 150px;">
+				                                                <option value='argentina' selected >Argentina</option>
+				                                                <option value='australia' >Australia</option>
+				                                                <option value='austria' >Austria</option>
+				                                                <option value='belguim'  >Belguim</option>
+				                                                <option value='brazil' >Brazil</option>
+				                                                <option value='canada' >Canada</option>
+				                                                <option value='chile' >Chile</option>
+				                                                <option value='china' >China</option>
+				                                                <option value='colombia' >Colombia</option>
+																<option value='czech-republic' >Czech Republic</option>
+																<option value='denmark' >Denmark</option>
+																<option value='estonia' >Estonia</option>
+																<option value='finland' >Finland</option>
+																<option value='france' >France</option>
+																<option value='germany' >Germany</option>
+																<option value='greece' >Greece</option>
+																<option value='hong-kong' >Hong kong</option>
+																<option value='hungary' >Hungary</option>
+																<option value='iceland' >Iceland</option>
+																<option value='india' >India</option>
+																<option value='indonesia' >Indonesia</option>
+																<option value='ireland' >Ireland</option>
+																<option value='japan' >Japan</option>
+						                                        <option value='united-kingdom' >United Kingdom</option>										
+																<option value='united-states' >United States</option>
 				                                         </select>
+				                                          </div>
 				                                     </div>
-				                                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ></div>
-				                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+				                                      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"  style="margin-left: 50px;margin-right: 50px;" >
+				                                           <label  style="margin-left: 15px;"  >Exchange</label>
+				                                           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+				                                                <select  id="exchanges" style="width: 150px;"  >
+				                                                     <c:forEach items="${exchanges}" var="exchange">
+				                                                              <option value='${exchange}' >${exchange}</option>
+				                                                     </c:forEach>
+				                                               </select>
+				                                          </div>
+				                                      </div>
+				                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"  style="margin-left: 85px;top: 16px;"   >
 															 <div class="typeahead__container">
 																        <div class="typeahead__field">
 																	            <span class="typeahead__query">
-																	                <input class="js-typeahead-country_v1" name="company" placeholder="symbol" autocomplete="off" type="search"   />
+																	                <input class="typeahead" id="cnt" name="company" placeholder="symbol"  onkeyup="this.value = this.value.toUpperCase();" autocomplete="off" type="search"   />
 																	            </span>
 																	            <span class="typeahead__button">
 																	                <button type="submit" style="background-color: mintcream;">
@@ -87,10 +125,41 @@
 		 <script   src="<c:url value="/resources/js/typeahead.js" />" type="text/javascript"  ></script>
 		 <script   src="<c:url value="/resources/js/autocomplete.js" />" type="text/javascript"  ></script>
 		 <script   src="<c:url value="/resources/js/gritter.js" />" type="text/javascript"  ></script>
-		 
+		 <script   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"  type="text/javascript" ></script>
 		  <script type="text/javascript"    >
 
 					$(document).ready(function () {
+						
+						
+						
+						   $('#countries').on('change', function() {
+							               $('#cnt').val("");
+										   $.get('<c:url value="/company/exchanges" />', 
+												  {country : $(this).val() }, 
+												  function(data, status){
+								       	               var html = '';
+								       	               for(i in data){
+								       	            	  html = html + "<option value='" + data[i] + "' " + ((i==0) ? " selected " : "") + " >" + data[i] 
+								       	            	        + "</option>";
+								       	                     }
+								       	               $('#exchanges').html(html);
+								       	           });
+						         });
+						   
+						   
+						   
+						   
+						   $('#exchanges').on('change', function(){
+							               $('#cnt').val("");
+										   $.get('<c:url value="/exchange" />', 
+													  {exchange : $(this).val() 
+											   });
+					         });
+						   
+						   
+							  $('#cnt').autocomplete({
+							      source: '<c:url value="/companies" />'
+							    });
 				
   
                                <c:if test="${index_data != null}" >

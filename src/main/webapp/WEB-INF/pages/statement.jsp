@@ -20,6 +20,7 @@
 		<link href="<c:url value="/resources/css/style.css"  />" rel="stylesheet"  type="text/css"/>
 		<link href="<c:url value="/resources/css/typeahead.css"  />" rel="stylesheet"  type="text/css"/>
 		<link href="<c:url value="/resources/css/gritter.css" />" rel="stylesheet"  type="text/css"/>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		 
 		  <link rel="icon"  type="image/x-icon"  href="<c:url value="/resources/images/favicon.png" />"  />
 		  <style type="text/css">
@@ -44,19 +45,65 @@
 						<div class="row">
 							     <section class="content">
 								         <div class="row">
-									             <div id="custom-search-input" class="col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3 search-container-result">
+									             <div id="custom-search-input" class="col-sm-8 col-md-8 col-xs-10 col-md-offset-2 col-sm-offset-2 col-xs-offset-1 search-container-result">
 									                          <form action="<c:url value="/querystatement" />"  method="get" >
-												                           <div class="typeahead__container">
-																			        <div class="typeahead__field">
-																				            <span class="typeahead__query">
-																				                <input class="js-typeahead-country_v1" name="company" placeholder="symbol" autocomplete="off" type="search"  th:value="${company}" />
-																				            </span>
-																				            <span class="typeahead__button">
-																				                <button type="submit" style="background-color: mintcream;">
-																				                    <i class="typeahead__search-icon"></i>
-																				                </button>
-																				            </span>
-																		            </div>
+									                                 <div class="row">
+									                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+										                                          <label   style="margin-left: 15px;" >Country</label>
+										                                          <div class="col-md-2"  style="margin-left: 3px;margin-right: -44px;top: 26px;"  >
+										                                              <select id="countries" style="width: 150px;">
+										                                                <option value='argentina' ${country == 'argentina' ? 'selected' : '' } >Argentina</option>
+										                                                <option value='australia'  ${country == 'australia' ? 'selected' : '' } >Australia</option>
+										                                                <option value='austria'  ${country == 'austria' ? 'selected' : '' } >Austria</option>
+										                                                <option value='belguim'  ${country == 'belguim' ? 'selected' : '' } >Belguim</option>
+										                                                <option value='brazil' ${country == 'brazil' ? 'selected' : '' } >Brazil</option>
+										                                                <option value='canada'  ${country == 'canada' ? 'selected' : '' } >Canada</option>
+										                                                <option value='chile' ${country == 'chile' ? 'selected' : '' } >Chile</option>
+										                                                <option value='china' ${country == 'china' ? 'selected' : '' } >China</option>
+										                                                <option value='colombia' ${country == 'colombia' ? 'selected' : '' } >Colombia</option>
+																						<option value='czech-republic'  ${country == 'czech-republic' ? 'selected' : '' } >Czech Republic</option>
+																						<option value='denmark' ${country == 'denmark' ? 'selected' : '' } >Denmark</option>
+																						<option value='estonia' ${country == 'estonia' ? 'selected' : '' } >Estonia</option>
+																						<option value='finland' ${country == 'finland' ? 'selected' : '' } >Finland</option>
+																						<option value='france' ${country == 'france' ? 'selected' : '' } >France</option>
+																						<option value='germany' ${country == 'germany' ? 'selected' : '' } >Germany</option>
+																						<option value='greece' ${country == 'greece' ? 'selected' : '' } >Greece</option>
+																						<option value='hong-kong' ${country == 'hong-kong' ? 'selected' : '' } >Hong kong</option>
+																						<option value='hungary' ${country == 'hungary' ? 'selected' : '' } >Hungary</option>
+																						<option value='iceland' ${country == 'iceland' ? 'selected' : '' } >Iceland</option>
+																						<option value='india' ${country == 'india' ? 'selected' : '' } >India</option>
+																						<option value='indonesia' ${country == 'indonesia' ? 'selected' : '' } >Indonesia</option>
+																						<option value='ireland' ${country == 'ireland' ? 'selected' : '' } >Ireland</option>
+																						<option value='japan' ${country == 'japan' ? 'selected' : '' } >Japan</option>
+												                                        <option value='united-kingdom' ${country == 'united-kingdom' ? 'selected' : '' } >United Kingdom</option>										
+																						<option value='united-states' ${country == 'united-states' ? 'selected' : '' } >United States</option>
+										                                         </select>
+										                                          </div>
+										                                     </div>
+										                                      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"  style="margin-left: 50px;margin-right: 50px;" >
+										                                           <label  style="margin-left: 15px;"  >Exchange</label>
+										                                           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+										                                                <select  id="exchanges" style="width: 150px;"  >
+										                                                     <c:forEach items="${exchanges}" var="exch">
+										                                                              <option value='${exch}'  ${exch == exchange ? 'selected' : '' } >${exch}</option>
+										                                                     </c:forEach>
+										                                               </select>
+										                                          </div>
+										                                      </div>
+										                                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"  style="margin-left: 85px;top: 16px;"   >
+														                           <div class="typeahead__container">
+																					        <div class="typeahead__field">
+																						            <span class="typeahead__query">
+																						                <input class="typeahead" id="cnt"  name="company" placeholder="symbol" autocomplete="off" type="search"  value="${company}" />
+																						            </span>
+																						            <span class="typeahead__button">
+																						                <button type="submit" style="background-color: mintcream;">
+																						                    <i class="typeahead__search-icon"></i>
+																						                </button>
+																						            </span>
+																				            </div>
+																				    </div>
+																		    </div>
 																		    </div>
 												                            <div class="input-group input-group col-md-8 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-7 col-xs-offset-3" style="padding-top:5%" >
 												                                  <label class="radio-inline"><input type="radio" name="type"  value="income"  <c:if test="${type =='income'}" >checked="true"</c:if> />income</label>
@@ -163,12 +210,43 @@
 		 <script   src="<c:url value="/resources/js/autocomplete.js" />" type="text/javascript"  ></script>
 		 <script   src="<c:url value="/resources/js/gritter.js" />" type="text/javascript"  ></script>
 		 <script   src="<c:url value="/resources/js/chartjs.js" />" type="text/javascript"  ></script>
+		  <script   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"  type="text/javascript" ></script>
 		   
 		 <script type="text/javascript"    >
 
 		 
 		 
 					$(document).ready(function () {
+
+
+						$('#countries').on('change', function() {
+				               $('#cnt').val("");
+							   $.get('<c:url value="/company/exchanges" />', 
+									  {country : $(this).val() }, 
+									  function(data, status){
+					       	               var html = '';
+					       	               for(i in data){
+					       	            	  html = html + "<option value='" + data[i] + "' " + ((i==0) ? " selected " : "") + " >" + data[i] 
+					       	            	        + "</option>";
+					       	                     }
+					       	               $('#exchanges').html(html);
+					       	           });
+			         });
+			   
+			   
+			   
+			   
+			   $('#exchanges').on('change', function(){
+				               $('#cnt').val("");
+							   $.get('<c:url value="/exchange" />', 
+										  {exchange : $(this).val() 
+								   });
+		         });
+			   
+			   
+				  $('#cnt').autocomplete({
+				      source: '<c:url value="/companies" />'
+				    });
 				
 								$('.star').on('click', function () {
 							                   $(this).toggleClass('star-checked');

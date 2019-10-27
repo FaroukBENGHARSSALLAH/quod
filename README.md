@@ -1,4 +1,4 @@
-Quoud
+Quod
 ==========================
 
 Spring MVC web module to search for Financial statements.
