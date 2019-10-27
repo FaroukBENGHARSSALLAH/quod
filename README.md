@@ -5,7 +5,7 @@ Spring MVC web module to search for Financial statements.
 
 Used APIs,
 
-- Java 7
+- Java 8
 - Spring MVC 3.2.8
 - Java iText 2.1.7
 - Java poi 3.17
