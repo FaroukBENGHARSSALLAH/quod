@@ -13,3 +13,6 @@ Used APIs,
 - HTML5, CSS3, Boostrap 3, JQuery 2
 
 You can visit the live version via [Quod](http://quod-dev-alpha.herokuapp.com//).
+
+
+> This project is in this alpha stage
