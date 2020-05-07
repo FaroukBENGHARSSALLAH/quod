@@ -15,4 +15,4 @@ Used APIs,
 You can visit the live version via [Quod](http://quod-dev-alpha.herokuapp.com//).
 
 
-> This project is in this alpha stage
+> This project is in the alpha stage
