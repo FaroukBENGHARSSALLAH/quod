@@ -12,7 +12,7 @@ Used APIs,
 - Spring Security 3.2.3
 - HTML5, CSS3, Boostrap 3, JQuery 2
 
-You can visit the live version via [Quod](http://quod.onrender.com//).
+You can visit the live version via [Quod](http://quod.onrender.com).
 
 
 > This project is in the alpha stage
